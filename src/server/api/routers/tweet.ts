@@ -15,12 +15,16 @@ export const tweetRouter = createTRPCRouter({
   create: protectedProcedure
     .input(z.object({ content: z.string() }))
     .mutation(async ({ input: { content }, ctx }) => {
-      return await ctx.db.tweet.create({
+      const tweet = await ctx.db.tweet.create({
         data: {
           content,
           userId: ctx.session.user.id,
         },
       });
+
+      void ctx.revalidateSSG?.(`/profiles/${ctx.session.user.id}`);
+
+      return tweet;
     }),
   infiniteProfileFeed: publicProcedure
     .input(
