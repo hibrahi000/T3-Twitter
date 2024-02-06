@@ -117,7 +117,7 @@ function TweetCard({
       <div className="flex flex-grow flex-col">
         <div className="flex gap-1">
           <Link
-            href={`/test/${user.id}`}
+            href={`/profiles/${user.id}`}
             className="font-bold outline-none hover:underline focus-visible:underline"
           >
             {user.name}
