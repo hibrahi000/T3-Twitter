@@ -1,10 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
-import { Prisma } from "@prisma/client";
-import { inferAsyncReturnType } from "@trpc/server";
-import { connect } from "http2";
-import { Input } from "postcss";
-import { disconnect } from "process";
 import { z } from "zod";
 
 import {
@@ -66,10 +61,8 @@ export const profileRouter = createTRPCRouter({
         });
         addedFollow = false;
       }
-      
-      // Revalidation 
 
-      
+      // Revalidation
 
       return { addedFollow };
     }),

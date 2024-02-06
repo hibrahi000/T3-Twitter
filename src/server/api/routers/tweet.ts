@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
-import { Prisma } from "@prisma/client";
-import { inferAsyncReturnType } from "@trpc/server";
+import type { Prisma } from "@prisma/client";
+import type { inferAsyncReturnType } from "@trpc/server";
 import { z } from "zod";
 
 import {
-  createTRPCContext,
+  type createTRPCContext,
   createTRPCRouter,
   protectedProcedure,
   publicProcedure,
@@ -31,7 +31,7 @@ export const tweetRouter = createTRPCRouter({
       }),
     )
     .query(async ({ input: { limit = 10, userId, cursor }, ctx }) => {
-      return await getInfitiniteTweets({
+      return await getInfiniteTweets({
         limit,
         ctx,
         cursor,
@@ -50,7 +50,7 @@ export const tweetRouter = createTRPCRouter({
     .query(
       async ({ input: { limit = 10, onlyFollowing = false, cursor }, ctx }) => {
         const currentUserId = ctx.session?.user.id;
-        return await getInfitiniteTweets({
+        return await getInfiniteTweets({
           limit,
           ctx,
           cursor,
@@ -96,7 +96,7 @@ export const tweetRouter = createTRPCRouter({
   }),
 });
 
-async function getInfitiniteTweets({
+async function getInfiniteTweets({
   whereClause,
   ctx,
   limit,
